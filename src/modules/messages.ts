@@ -3,7 +3,6 @@ import config from '../../config';
 
 //? TODO: remove activity dots before a log message is written to stdout
 //? TODO: Different languages?
-//TODO edit setFooter as they are marked as deprecated
 
 export default {
   /**
@@ -402,6 +401,41 @@ export default {
       console.log(
         `Error: Can't remove role ${roleName} (${roleID}, rolePosition: ${rolePosition}) from user: ${userName} (${userID}). activityName: ${activityName}, highestBotRole: ${highestBotRole}`
       );
+    },
+    /**
+     * Sends a message to the console that the bot does not have permission to send messages in the channel.
+     * @param {Discord.BaseGuild['name']} guildName - The name of the guild that the message couldn't being sent to.
+     * @returns None
+     */
+    noSendMsgPerm: (guildName: Discord.BaseGuild['name']) => {
+      console.warn(
+        `WOKCommands > Could not send message due to no permissions in channel for ${guildName}`
+      );
+    }
+  },
+  help: {
+    /**
+     * Creates the base embed for the help menu.
+     * @returns {Discord.MessageEmbed} - the base embed for the help menu.
+     */
+    baseEmbed: () => {
+      return new Discord.MessageEmbed()
+        .setTitle('Help Menu')
+        .setDescription("Please select a command category by clicking it's reaction.")
+        .setColor(config.embedColor)
+        .setFooter({
+          text: `Made ${config.author === config.host ? 'and hosted ' : ''}by ${config.author}${
+            config.author !== config.host ? ` and hosted by ${config.host}` : ''
+          } `,
+          iconURL: config.botAuthorLogoLink
+        });
+    },
+    /**
+     * Returns 'commands'.
+     * @returns {string} 'commands'.
+     */
+    commands: () => {
+      return 'commands';
     }
   }
 };
