@@ -20,16 +20,21 @@
     "wokcommands": "github:tippf3hlr/wokcommands"
   },
   "devDependencies": {
+    "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
     "arkit": "^1.6.4",
     "eslint": "^8.11.0",
     "eslint-config-prettier": "^8.5.0",
+    "jest": "^27.5.1",
+    "mockingoose": "^2.15.2",
+    "mongodb-memory-server": "^8.5.0",
     "pino-pretty": "^7.6.0",
     "prettier": "^2.6.0",
+    "ts-jest": "^27.1.4",
     "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.3"
   },
   "scripts": {
     "start": "ts-node ./src/index.ts | ./node_modules/.bin/pino-pretty",
@@ -37,6 +42,7 @@
     "tsc": "npx tsc --outDir out/ && powershell -Command \"(gc out/src/modules/bot.js) -replace 'typeScript: true', 'typeScript: false' | Out-File -encoding ASCII out/src/modules/bot.js\"",
     "arkit": "arkit -f src/index.ts -e test/ -o architecture.svg",
     "lint": "eslint --ext .js,.ts .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "test": "jest"
   }
 }
